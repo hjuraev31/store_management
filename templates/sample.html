@@ -1,0 +1,314 @@
+{% extends 'sklad_temp/base.html' %}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+
+    {% block sample %}
+
+    <div style="width: 100%;
+    margin-bottom: 12px;"></div>
+
+    {% if request.user.is_admin and user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'truck_data' truck_of_user.pk %}">Otchet</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary" >Ortga</a>
+        <div style="
+        width: 100%;
+        margin-bottom: 12px;"></div>
+        <table id="tbldata" class="table table-striped table-bordered table-hover ">
+          <tr class="table-dark">
+              <th>Produkt</th>
+              <th>Kecagi qoldiq</th>
+              <th>Kelgani</th>
+              <th>Soni</th>
+              <th>Qolgani</th>
+              <th>Sotilgani</th>
+              <th>Nuhsonli mahsulotlar</th>
+              <th>Bir dona mahsulot narxi</th>
+              <th>Jami sotilganlar</th>
+              <th>Ozgartirish</th>
+              <th>Ochirish</th>
+          </tr>
+          {% for p in ovqatlar %}
+          <tr>
+              <td>{{p.product}}</td>
+              <td>{{p.yest_left}}</td>
+              <td>{{p.quantity}}</td>
+              <td>{{p.total_quantity}}</td>
+              <td>{{p.left}}</td>
+              <td>{{p.quantity_sold}}</td>
+              <td value="{{ p.defect }}">{{p.defect}}</td>
+              <td>{{p.price}}</td>
+              <td>{{p.summ }}</td>
+              <td><a hx-get="{% url 'update_product' p.pk %}" hx-target="#dialog2" data-bs-toggle="modal"><button class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+              </svg></button></a></td>
+              <td><a hx-get="{% url 'delete' p.pk %}" hx-target="#dialog4" data-bs-toggle="modal"><button class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg></button></a></td>
+              <!-- <td><a class="btn btn-success" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg>
+              </a></td> -->
+          </tr>
+          {% endfor %}
+          {% for p in suvlar %}
+          <tr>
+              <td>{{p.product}}</td>
+              <td>{{p.yest_left}}</td>
+              <td>{{p.quantity}}</td>
+              <td>{{p.total_quantity}}</td>
+              <td>{{p.left}}</td>
+              <td>{{p.quantity_sold}}</td>
+              <td value="{{ p.defect }}">{{p.defect}}</td>
+              <td>{{p.price }}</td>
+              <td>{{p.summ }}</td>
+              <td><a hx-get="{% url 'update_product' p.pk %}" hx-target="#dialog2" data-bs-toggle="modal"><button class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+              </svg></button></a></td>
+              <td><a hx-get="{% url 'delete' p.pk %}" hx-target="#dialog4" data-bs-toggle="modal"><button class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg></button></a></td>
+          </tr>
+          {% endfor %}
+          <tr>
+              <td class="bg-success"><span style="color:white;">Jami savdo:</span></td>
+              <td colspan="7"></td>
+              <td class="bg-success"><span style="color:white;">{{total_sum}}</span></td>
+              <td colspan="2"></td>
+          </tr>        
+      </table>
+
+        {% elif user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'truck_data' truck_of_user.pk %}">Otchet</a>
+        <a hx-get="{% url 'create_product' %}" hx-target="#dialog" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProdModal">Produkt qoshish</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Ortga</a>
+        <div style="
+        width: 100%;
+        margin-bottom: 12px;"></div>
+        <table id="tbldata" class="table table-striped table-bordered table-hover ">
+          <tr class="table-dark">
+              <th>Produkt</th>
+              <th>Kecagi qoldiq</th>
+              <th>Kelgani</th>
+              <th>Soni</th>
+              <th>Qolgani</th>
+              <th>Sotilgani</th>
+              <th>Nuhsonli mahsulotlar</th>
+              <th>Bir dona mahsulot narxi</th>
+              <th>Jami sotilganlar</th>
+              <th>Ozgartirish</th>
+              <th>Ochirish</th>
+          </tr>
+          {% for p in ovqatlar %}
+          <tr>
+              <td>{{p.product}}</td>
+              <td>{{p.yest_left}}</td>
+              <td>{{p.quantity}}</td>
+              <td>{{p.total_quantity}}</td>
+              <td>{{p.left}}</td>
+              <td>{{p.quantity_sold}}</td>
+              <td value="{{ p.defect }}">{{p.defect}}</td>
+              <td>{{p.price}}</td>
+              <td>{{p.summ }}</td>
+              <td><a hx-get="{% url 'update_product' p.pk %}" hx-target="#dialog2" data-bs-toggle="modal"><button class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+              </svg></button></a></td>
+              <td><a hx-get="{% url 'delete' p.pk %}" hx-target="#dialog4" data-bs-toggle="modal"><button class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg></button></a></td>
+              <!-- <td><a class="btn btn-success" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg>
+              </a></td> -->
+          </tr>
+          {% endfor %}
+          {% for p in suvlar %}
+          <tr>
+              <td>{{p.product}}</td>
+              <td>{{p.yest_left}}</td>
+              <td>{{p.quantity}}</td>
+              <td>{{p.total_quantity}}</td>
+              <td>{{p.left}}</td>
+              <td>{{p.quantity_sold}}</td>
+              <td value="{{ p.defect }}">{{p.defect}}</td>
+              <td>{{p.price }}</td>
+              <td>{{p.summ }}</td>
+              <td><a hx-get="{% url 'update_product' p.pk %}" hx-target="#dialog2" data-bs-toggle="modal"><button class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+              </svg></button></a></td>
+              <td><a hx-get="{% url 'delete' p.pk %}" hx-target="#dialog4" data-bs-toggle="modal"><button class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg></button></a></td>
+          </tr>
+          {% endfor %}
+          <!-- <tr>
+              <td class="bg-success"><span style="color:white;">Jami savdo:</span></td>
+              <td colspan="5"></td>
+              <td class="bg-success"><span style="color:white;">{{total_sum1}}</span></td>
+              <td colspan="2"></td>
+          </tr>         -->
+      </table>
+      <form method="post"> {% csrf_token %}
+        <div class="container-fluid">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Jami savdo:</div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{total_sum}}</div>
+          </div>
+          <div class="row" style="height: 5px;">
+          </div>
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Kartadagi pul:</div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.card}}</div>
+          </div>
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Povarlar ish xaqqi:</div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.cookers}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Sotuvchilar ish xaqqi: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.sellers}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Tozalovchi xodimlar ish xaqqi: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;"> {{form.cleaners}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Somsapazlar ish xaqqi:  </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.somsapazlar}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Suv sotuvchilar ish xaqqi: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.suvchilar}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Fast food povarlar ish xaqqi: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.ffcookers}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Bozorlik xarajatlar: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.expenses}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Kozda tutilmagan chiqimlar: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.un_expenses}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Xojayinlar olgan puli: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.admin_expenses}}</div>
+          </div>
+
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Xojayin: </div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.admin}}</div>
+          </div>
+          <div class="row justify-content-between align-items-center">
+            <div class="col-3 bg-success" style="color:white; padding: 10px;">Kommentariy</div>
+            <div class="col-4 bg-success" style="color:white; padding: 10px;">{{form.unecomment}}</div>
+          </div>
+
+        </div>
+        <p style="display: none;">{{form.truck_id}}</p>
+        <p style="display: none;">{{form.month}}</p>
+        <p style="display: none;">{{form.year}}</p>
+        <p style="display: none;">{{form.total}}</p> 
+        <p style="display: none;">{{form.page}}</p>
+        <p style="display: none;">{{form.day}}</p>
+        <p style="display: none;">{{form.total_left}}</p>
+        <div style="width: 100%; margin-bottom: 20px;"></div>
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <p style="text-align: center;"><button class="btn btn-primary" onclick="parse()" type="submit" style="text-align: center; font-size: 20px;" >Saqlash</button></p>   
+    </form>        
+
+        
+        {% endif %}
+        
+      
+        <div></div>
+          
+        <p id="pk" style="display:none;">{{pk}}</p>
+        <p style="display:none;" id="repsum">{{total_sum}}</p>
+  <p style="display:none;" id="usertr">{{usertr.pk}}</p>
+        
+        <div id="modal" class="modal fade">
+            <div id="dialog" class="modal-dialog" hx-target="this"></div>
+        </div>
+        <div id="modal2" class="modal fade">
+            <div id="dialog2" class="modal-dialog" hx-target="this"></div>
+        </div>
+        <div id="modal3" class="modal fade">
+            <div id="dialog3" class="modal-dialog" hx-target="this"></div>
+        </div>
+        <div id="modal4" class="modal fade">
+            <div id="dialog4" class="modal-dialog" hx-target="this"></div>
+        </div>
+        
+        <script>
+          console.log('something')
+        </script>
+        <script>        
+          var nameOfMonthUS = new Date().toLocaleString(
+          'en-US', {month: 'long'}
+          );
+
+          var year = new Date().getFullYear();
+          var day = new Date().getDate();
+          var notpresum = document.getElementById('repsum');
+          var sum = parseInt(notpresum.textContent.split(',').join(''));
+          console.log(pk);
+          var usertrpk = document.getElementById('usertr');
+          var usertrval = parseInt(usertrpk.textContent);
+          document.getElementById('id_page').required = false;
+          document.getElementById('id_day').setAttribute('value', day);
+          document.getElementById('id_total').setAttribute('value', sum);
+          document.getElementById('id_total_left').setAttribute('value', 0);
+          document.getElementById('id_month').setAttribute('value', nameOfMonthUS);
+          document.getElementById('id_year').setAttribute('value', year);
+          
+          console.log(nameOfMonthUS);
+          console.log(year);
+          
+          function selectElement(id, valueToSelect) {    
+            let element = document.getElementById(id);
+            element.value = valueToSelect;
+            console.log(valueToSelect);
+          }
+      
+          selectElement('id_truck_id', usertrval);
+          function parse() {
+            // var page = document.documentElement.innerHTML;
+            var page = document.getElementById('tbldata').outerHTML;
+            document.getElementById('id_page').innerHTML = page;
+          }
+      
+        </script>
+
+        {% endblock %}
+
+        
+</body>
+</html>

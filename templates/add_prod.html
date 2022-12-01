@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+ <form hx-post="{{ request.path }}" class="modal-content" >
+    {% csrf_token %}
+    <div class="modal-header">
+      <h5 class="modal-title">Produkt qoshish</h5>
+    </div>
+    <div class="modal-body">
+      <div id="modladdprod">
+      <p style="display:none;">{{form.truck}}</p>
+      <p style="margin-bottom: 3px;">Produkt</p>
+      {{form.product}}<br><p></p>
+      <p style="margin-bottom: 3px;">Kategoriya</p>
+      {{form.category}}<br>
+      <p></p>
+      <p style="margin-bottom: 3px;">Soni</p>
+      {{form.quantity}}<br>
+      <br><p style="display: none;">{{form.quantity_sold}}</p>
+      <p style="display: none;">{{form.left}}</p>
+      <p style="display: none;">{{form.defect}}</p>
+      <p style="display: none;">{{form.yest_left}}</p>
+      <p style="display: none;">{{form.total_quantity}}</p>
+      <p style="margin-bottom: 3px;">Narxi</p>
+      <p >{{form.price}}</p>
+      <p style="display: none;">{{form.summ}}</p>
+      <p style="display: none;">{{form.extra}}</p>  
+    </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+      <button type="submit" class="btn btn-primary" onClick="window.location.reload()">Qoshish</button>
+    </div>
+  </form>
+</body>
+</html>

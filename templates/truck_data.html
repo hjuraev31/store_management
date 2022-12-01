@@ -1,0 +1,114 @@
+{% extends 'sklad_temp/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    {% block content %}
+    <a style="margin-top: 10px; margin-left:10px;" href="{% url 'test' pk_id %}" class="btn btn-secondary">Ortga</a>
+    <h1 style="text-align: center;">2022</h1>
+    <div class="container" style="text-align: center;">
+        <div class="row">
+          <div class="col">
+            <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='January' year='2022' %}">Yanvar</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='February' year='2022' %}">Fevral</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='March' year='2022' %}">Mart</a>
+          </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='April' year='2022' %}">Aprel</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='May' year='2022' %}">May</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='June' year='2022' %}">Iyun</a>
+            </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='July' year='2022' %}">Iyul</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='August' year='2022' %}">Avgust</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='September' year='2022' %}">Sentabr</a>
+            </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='October' year='2022' %}">Oktabr</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='November' year='2022' %}">Noyabr</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='December' year='2022' %}">Dekabr</a>
+            </div>
+        </div>
+    </div>
+    <hr>        
+    <h1 style="text-align: center;">2023 yil</h1>
+    <div class="container" style="text-align: center;">
+        <div class="row">
+          <div class="col">
+            <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='January' year='2023' %}">Yanvar</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='February' year='2023' %}">Fevral</a>
+            </div>
+          <div class="col">
+            <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='March' year='2023' %}">Mart</a>
+        </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='April' year='2023' %}">Aprel</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='May' year='2023' %}">May</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='June' year='2023' %}">Iyun</a>
+            </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='July' year='2023' %}">Iyul</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='August' year='2023' %}">Avgust</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='September' year='2023' %}">Sentabr</a>
+            </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='October' year='2023' %}">Oktabr</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='November' year='2023' %}">Noyabr</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" style="width: 100px; margin: 5px;" href="{% url 'bdm' pk=pk_id month='December' year='2023' %}">Dekabr</a> 
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+                                
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+      crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        .login-form {
+            text-align: center;
+        }
+        .afterspan {
+            margin-bottom: 12px;
+        }
+        #id_product {
+            width: 140px;
+            padding: 5px 10px;
+        }
+        #id_quantity {
+            width: 140px;
+            padding: 5px 10px;
+        }
+        #id_quantity_sold {
+            width: 140px;
+            padding: 5px 10px;
+        }
+        .form-footer {
+            display: inline;
+        }
+        #detmal {
+            text-decoration: none;
+        }
+        
+        #id_store_emp_id {
+            width: 250px;
+            padding: 8px 12px;
+            box-sizing: border-box;
+        }
+        #id_name {
+            width: 250px;
+            padding: 8px 12px;
+            box-sizing: border-box;
+        }
+        #truckAddForm {
+            width: 350px;
+            height: 400px;
+            text-align: center;
+            justify-items: center;
+        }
+        #outerModal {
+            width: 350px;
+        }
+        #id_admin {
+            width: 189.3px;
+            height: 30px;
+        }
+        #modladdprod {
+            text-align: center;
+        }
+        #id_category {
+            width: 140px;
+            padding: 5px 10px;
+        }
+        #id_price {
+            width: 140px;
+            padding: 5px 10px;    
+        }
+        #id_left {
+            width: 140px;
+            padding: 5px 10px;
+        }
+        #id_defect {
+            width: 140px;
+            padding: 5px 10px;    
+        }
+        #id_unecomment {
+            word-wrap: break-word;
+            word-break: break-all;
+            width: 200px;
+            height: 50px;
+            background-color: white;
+        }
+        #id_admin_expenses {
+            background: white;
+        }
+        #id_admin {
+            width: 200px;
+            background: white;
+        }
+        #id_un_expenses {
+            background: white;
+        }
+        #id_expenses {
+            background: white;
+        }
+        #id_ffcookers {
+            background: white;
+        }
+        #id_suvchilar {
+            background: white;
+        }
+        #id_somsapazlar {
+            background: white;
+        }
+        #id_cleaners {
+            background: white;
+        }
+        #id_sellers {
+            background: white;
+        }
+        #id_cookers {
+            background: white;
+        }
+        #id_card {
+            background: white;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    
+
+    {% block content %}
+    {% endblock content %}
+    {% block pt %}
+    {% endblock %}
+    {% block sample %}
+    {% endblock %}
+    {% block byday %}
+    {% endblock %}
+    
+    
+
+
+     <script>
+        const modal2 = new bootstrap.Modal(document.getElementById("modal2"))
+
+        htmx.on("htmx:afterSwap", (e) => {
+        // Response targeting #dialog => show the modal
+        if (e.detail.target.id == "dialog2") {
+            modal2.show()
+        }
+        })
+
+        htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "dialog2" && !e.detail.xhr.response) {
+            modal2.hide()
+            e.detail.shouldSwap = false
+        }
+        })
+
+        htmx.on("hidden.bs.modal", () => {
+        document.getElementById("dialog2").innerHTML = ""
+        })  
+     </script>
+     <script>
+        const modal = new bootstrap.Modal(document.getElementById("modal"))
+
+        htmx.on("htmx:afterSwap", (e) => {
+        // Response targeting #dialog => show the modal
+        if (e.detail.target.id == "dialog") {
+            modal.show()
+        }
+        })
+
+        htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "dialog" && !e.detail.xhr.response) {
+            modal.hide()
+            e.detail.shouldSwap = false
+        }
+        })
+
+        htmx.on("hidden.bs.modal", () => {
+        document.getElementById("dialog").innerHTML = ""
+        })
+     </script>
+    <script>
+        const modal3 = new bootstrap.Modal(document.getElementById("modal3"))
+
+        htmx.on("htmx:afterSwap", (e) => {
+        // Response targeting #dialog => show the modal
+        if (e.detail.target.id == "dialog3") {
+            modal3.show()
+        }
+        })
+
+        htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "dialog3" && !e.detail.xhr.response) {
+            modal3.hide()
+            e.detail.shouldSwap = false
+        }
+        })
+
+        htmx.on("hidden.bs.modal", () => {
+        document.getElementById("dialog3").innerHTML = ""
+        })  
+    </script>
+
+<script>
+    const modal4 = new bootstrap.Modal(document.getElementById("modal4"))
+
+    htmx.on("htmx:afterSwap", (e) => {
+    // Response targeting #dialog => show the modal
+    if (e.detail.target.id == "dialog4") {
+        modal4.show()
+    }
+    })
+
+    htmx.on("htmx:beforeSwap", (e) => {
+    // Empty response targeting #dialog => hide the modal
+    if (e.detail.target.id == "dialog4" && !e.detail.xhr.response) {
+        modal4.hide()
+        e.detail.shouldSwap = false
+    }
+    })
+
+    htmx.on("hidden.bs.modal", () => {
+    document.getElementById("dialog4").innerHTML = ""
+    })  
+</script>
+
+<script>
+    const modal5 = new bootstrap.Modal(document.getElementById("modal5"))
+
+    htmx.on("htmx:afterSwap", (e) => {
+    // Response targeting #dialog => show the modal
+    if (e.detail.target.id == "dialog5") {
+        modal5.show()
+    }
+    })
+
+    htmx.on("htmx:beforeSwap", (e) => {
+    // Empty response targeting #dialog => hide the modal
+    if (e.detail.target.id == "dialog5" && !e.detail.xhr.response) {
+        modal5.hide()
+        e.detail.shouldSwap = false
+    }
+    })
+
+    htmx.on("hidden.bs.modal", () => {
+    document.getElementById("dialog5").innerHTML = ""
+    })  
+</script>
+
+<!-- --------------------------------------------- -->
+
+</body>
+</html>

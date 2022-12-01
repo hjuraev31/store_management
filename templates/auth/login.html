@@ -1,0 +1,21 @@
+{% extends 'sklad_temp/base.html' %}
+
+{% block content %}
+
+<h2 style="text-align: center; margin-top: 120px;">Tizimga kirish</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="login-form">
+    {% for field in form %}
+        <p>
+            <p>{{  field.label_tag }}</p>
+            {{ field }}
+        </p>
+    {% endfor %} 
+    <button type="submit" class="btn btn-primary">Tizimga kirish</button>
+    </div>
+</form>
+
+{% endblock content %}
+
+

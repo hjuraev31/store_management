@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+ <form hx-post="{{ request.path }}" class="modal-content" class="notvisible">
+    {% csrf_token %}
+    <div class="modal-header">
+      <h5 class="modal-title">Produktni ozgartirish</h5>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+        <!-- {{form.truck}} -->
+        <p style="display: none;">{{form.truck}}</p>
+        <p style="margin-bottom: 3px;">Nomi</p>
+        {{form.product}}<br>
+        <p></p>
+        <p style="margin-bottom: 3px;">Kelgani</p>
+        {{form.quantity}}<br><p></p>
+        <p style="margin-bottom: 3px;">Qolgani</p>
+        {{form.left}}<br><p></p>
+        <p>Nuxsonli mahsulotlar soni</p>
+        {{form.defect}}
+        <p style="display: none;">{{form.total_quantity}}</p>
+        <p style="display: none;">{{form.yest_left}}</p>
+        <p style="display: none;">{{form.quantity_sold}}</p>
+        <p style="display: none;">{{form.price}}</p>
+        <p style="display: none;">{{form.category}}</p>
+        <p style="display: none;">{{form.extra}}</p>
+        <p style="display: none;">{{form.summ}}</p>
+        
+    
+      </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+      <button type="submit" class="btn btn-primary" onClick="window.location.reload()">Ozgartirish</button>
+    </div>
+  </form>
+  <script>
+    var extra = parseInt(document.getElementById('id_defect').value)
+    // document.getElementById('id_total_quantity').setAttribute('value', 0);
+    document.getElementById('id_yest_left').setAttribute('value', 20);
+    document.getElementById("id_product").readOnly = true;
+    var b = document.getElementById('id_extra').value = extra;
+    console.log(b);
+    // document.getElementById("id_quantity").readOnly = true;
+  </script>
+</body>
+</html>

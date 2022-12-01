@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+ <form hx-post="{{ request.path }}" class="modal-content" class="notvisible">
+    {% csrf_token %}
+    <div class="modal-header">
+      <h5 class="modal-title">Xisobot jonatish</h5>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+        <p style="display: none;">{{form.truck_id}}</p>
+        <p style="display: none;">{{form.month}}</p>
+        <p style="display: none;">{{form.year}}</p>
+        <p style="display: none;">{{form.total}}</p>
+        <p style="margin-bottom: 3px;">Kartadagi pul</p>
+        {{form.card}}<br>
+        <p style="margin-bottom: 3px;">Povarlar oyligi</p>
+        {{form.cookers}}<br>
+        <p style="margin-bottom: 3px;">Sotuvchilar oyligi</p>
+        {{form.sellers}}<br>
+        <p style="margin-bottom: 3px;">Tozalovchi xodimlar oyligi</p>
+        {{form.cleaners}}<br>
+        <p style="margin-bottom: 3px;">Somsapazlar oyligi</p>
+        {{form.somsapazlar}}<br>
+        <p style="margin-bottom: 3px;">Suv sotuvchilar oyligi</p>
+        {{form.suvchilar}}<br>
+        <p style="margin-bottom: 3px;">Fast food povarlar oyligi</p>
+        {{form.ffcookers}}<br>
+        
+        <p style="margin-bottom: 3px;">Bozorlik xarajatlar</p>
+        {{form.expenses}}<br>
+
+        <p style="margin-bottom: 3px;">Kozda tutilmagan chiqimlar</p>
+        {{form.un_expenses}}<br>
+        <p style="margin-bottom: 3px;">Kommentariy</p>
+        {{form.unecomment}}<br>        
+        <p style="margin-bottom: 3px;">Xojayinlar olgan puli</p>
+        {{form.admin_expenses}}<br>
+        <p style="margin-bottom: 3px;">Kim olgani</p>
+        {{form.admin}}<br>
+        <p style="display: none;">{{form.total_left}}</p>
+        
+        
+        <!-- {{form.as_p}}-->
+        
+      </div>
+     <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+      <button type="submit" class="btn btn-primary" onClick="window.location.reload()">Jonatish</button>
+      <!-- //onClick="window.location.reload()" --> 
+    </div>
+  </form>
+  <p style="display:none;" id="repsum">{{total_sum}}</p>
+  <p style="display:none;" id="usertr">{{usertr.pk}}</p> 
+  <script>        
+    var nameOfMonthUS = new Date().toLocaleString(
+    'en-US', {month: 'long'}
+    );
+    var year = new Date().getFullYear();
+    var id = document.getElementById('repsum');
+    var pk = parseInt(id.textContent);
+    var usertrpk = document.getElementById('usertr');
+    var usertrval = parseInt(usertrpk.textContent);
+    document.getElementById('id_total').setAttribute('value', pk);
+    document.getElementById('id_month').setAttribute('value', nameOfMonthUS);
+    document.getElementById('id_year').setAttribute('value', year);
+    
+    console.log(nameOfMonthUS);
+    console.log(year);
+    
+    function selectElement(id, valueToSelect) {    
+      let element = document.getElementById(id);
+      element.value = valueToSelect;
+      console.log(valueToSelect);
+    }
+
+    selectElement('id_truck_id', usertrval);
+
+
+  </script>
+</body>
+</html>

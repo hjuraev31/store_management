@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+      crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% block bymonth %}
+
+    <div>
+        
+        <table class="table table-striped table-bordered table-hover " style="text-align: center;">
+            <tr class="table-dark">
+                <th>Kun</th>
+                <th>Jami savdo</th>
+                <th>Karta xarajati</th>
+
+                <th>Bozorlik xarajatlar</th>
+                <th>Xo'jayin olgan pul</th>
+                <th>Xo'jayin</th>
+                <th>ko'zda tutilmagan xarajatlar</th>
+                <th>Kommentariy</th>
+                <th>Batafsil</th>
+                <th>Jami qolgani</th>
+            </tr>
+            {% for val in bmd %}
+            <tr>
+                <td>{{val.date|date:"d"}}</td>
+                <td>{{val.total}}</td>
+                <td>{{val.card}}</td>
+                
+                <td>{{val.expenses}}</td>
+                <td class="table-danger">{{val.admin_expenses}}</td>
+                <td class="table-danger">{% if val.admin == "LA" %}Luqmonjon{% else %}Abdujalil{% endif %}</td>
+                <td class="table-warning">{{val.un_expenses}}</td>
+                <td class="table-warning">{{val.unecomment}}</td>
+                <td><a class="btn btn-success" href="{% url 'bday' pk=trpk day=val.day month=month year=year %}"><i class="bi bi-box-arrow-in-right"></i></a></td>
+                <td>{{val.total_left}}</td>
+            </tr>    
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <!-- <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="bg-success" style="color:white;">{{ttls}}</td>
+            </tr>
+        </table>
+    </div>
+    <a href="{% url 'truck_data' trpk %}" class="btn btn-secondary" >Ortga</a>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #id_store_emp_id {
+            width: 250px;
+            padding: 8px 12px;
+            box-sizing: border-box;
+        }
+        #id_name {
+            width: 280px;
+            padding: 8px 12px;
+            box-sizing: border-box;
+        }
+        #truckAddForm {
+            width: 350px;
+            height: 400px;
+            text-align: center;
+            justify-items: center;
+        }
+        #outerModal {
+            width: 350px;
+        }
+    </style>
+</head>
+
+<body>
+ <form hx-post="{{ request.path }}" class="modal-content" class="notvisible">
+    {% csrf_token %}
+    <div class="modal-header">
+      <h5 class="modal-title">Truck qoshish</h5>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+        {% for f in form %}
+        <p>{{f.label_tag}}</p>
+        <p id="fields">{{ f }}</p>
+        {% endfor %}
+
+      </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+      <button type="submit" class="btn btn-primary" onClick="window.location.reload()">Qoshish</button>
+    </div>
+  </form>
+  <script>
+  </script>
+</body>
+</html>

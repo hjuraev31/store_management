@@ -1,0 +1,57 @@
+{% extends 'sklad_temp/base.html' %}
+
+<body>
+    <!-- {% include 'sklad_temp/truck_form.html' %} -->
+    {% block content %}
+
+    {% if request.user.is_admin and user.is_authenticated %}
+    <p style="text-align: center; margin-top: 20px; font-size:25px; font-weight: bold;">ADMIN</p>
+    <div style="display: flex; justify-content: center;">
+        <p><a class="btn btn-primary" href="{% url 'register' %}">Yangi xodim qoshish</a>
+        <a hx-get="{% url 'add_truck' %}" hx-target="#dialog5" class="btn btn-primary" data-bs-toggle="modal">Truck qoshish</a>
+        <a class="btn btn-danger" href="{% url 'logout' %}">Tizimdan ciqish</a>
+    </div>
+
+    <div class="container">
+        
+        <div class="row">
+                {% for t in trucks %}
+                <div class="col" 
+                style="
+                box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+                margin:20px;
+                padding: 10px 10px 10px 10px;
+                border-radius: 10px;
+                height: 90px;
+                ">    
+                    <p>{{t.store_emp_id}}</p>
+                    <a id="detmal" href="{% url 'test' t.pk %}">Malumotnoma</a>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+
+   
+
+
+    {% elif user.is_authenticated %}
+    <p style="text-align: center;font-size:30px;font-weight: bold;margin-top:50px;">Salom {{user}}</p>
+    <div style="display: flex; justify-content: center;">
+        <div style="width: 300px;
+        text-align: center;"> 
+            <a class="btn btn-primary" href="{% url 'test' usertruck.pk %}">Truckni ochish</a>
+            <a class="btn btn-danger" href="{% url 'logout' %}">Chiqish</a>
+        </div>
+    </div>
+    
+    
+
+    {% else %}
+    <p>Go and login first</p>
+    <a href="{% url 'login' %}">login</a> |
+    {% endif %}
+
+    <div id="modal5" class="modal fade">
+        <div id="dialog5" class="modal-dialog" hx-target="this"></div>
+    </div>
+    {% endblock content %}

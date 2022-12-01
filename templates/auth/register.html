@@ -1,0 +1,26 @@
+{% extends 'sklad_temp/base.html' %}
+
+
+{% load static %} 
+
+{% block content %}
+
+<h2 style="margin-top: 70px; margin-bottom: 15px; text-align:center">Xodim qoshish</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="login-form">
+
+    {% for field in userform %}
+        {{  field.label_tag }}<br>
+        {{ field }}<br>
+        <div class="afterspan"></div>
+    {% endfor %}
+    <div class="form-footer">
+    <button type="submit" style="margin-top: 10px;" class="btn btn-primary">Xodim qoshish</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary" style="margin-top: 10px;">Ortga</a>
+    </div>
+</div>
+</form>
+
+{% endblock content %}
+
